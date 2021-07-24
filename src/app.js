@@ -63,3 +63,33 @@ const galleryItems = [
     description: 'Lighthouse Coast Sea',
   },
 ];
+
+const imageContainer = document.querySelector('.js-gallery');
+const galleryMarkup = createGalleryItemsMarkup(galleryItems);
+
+imageContainer.insertAdjacentHTML('beforeend', galleryMarkup);
+
+function createGalleryItemsMarkup(galleryItems) {
+  return galleryItems
+    .map(({ preview, original, description }) => {
+      return `
+    <li class="gallery__item">
+  <a
+    class="gallery__link"
+    href="${original}"
+  >
+    <img
+      class="gallery__image"
+      src="${preview}"
+      data-source="${original}"
+      alt="${description}"
+    />
+  </a>
+</li>`;
+    })
+    .join('');
+}
+
+
+// document.querySelector('.js-gallery').innerHTML(createGalleryItemsMarkup(galleryItems));
+
